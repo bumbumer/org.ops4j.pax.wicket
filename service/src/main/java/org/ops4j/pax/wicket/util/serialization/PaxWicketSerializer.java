@@ -19,7 +19,7 @@ import org.apache.wicket.Application;
 import org.apache.wicket.application.IClassResolver;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.serialize.java.JavaSerializer;
-import org.apache.wicket.settings.ApplicationSettings;
+import org.apache.wicket.settings.IApplicationSettings;
 
 import java.io.*;
 
@@ -44,7 +44,7 @@ public class PaxWicketSerializer extends JavaSerializer {
 
     private IClassResolver getClassResolver() {
         Application application = WebApplication.get();
-        ApplicationSettings appSettings = application.getApplicationSettings();
+        IApplicationSettings appSettings = application.getApplicationSettings();
         return appSettings.getClassResolver();
     }
 }
