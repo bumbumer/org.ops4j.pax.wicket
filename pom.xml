@@ -67,11 +67,7 @@
     <pax.web.version>1.1.3</pax.web.version>
     <spring.osgi.version>1.2.1</spring.osgi.version>
     <spring.version>3.0.7.RELEASE</spring.version>
-<<<<<<< 8bc137a1000e52514a0e7840bc8a16370d990eb7
     <cglib.version>2.2.2_1</cglib.version>
-=======
-    <cglib.version>3.1_1</cglib.version>
->>>>>>> 19df9fcb935c615e52aeb046316b0cd01c04afff
     <cglib.range>[2,3)</cglib.range>
     <aries.blueprint.version>1.1.0</aries.blueprint.version>
     <aries.proxy.version>1.0.1</aries.proxy.version>
@@ -363,8 +359,8 @@
       </dependency>
       <dependency>
         <groupId>org.apache.geronimo.specs</groupId>
-        <artifactId>geronimo-servlet_2.5_spec</artifactId>
-        <version>1.2</version>
+        <artifactId>geronimo-servlet_3.0_spec</artifactId>
+        <version>1.0</version>
       </dependency>
       <dependency>
         <groupId>org.apache.geronimo.specs</groupId>
