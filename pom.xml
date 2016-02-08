@@ -55,7 +55,7 @@
     <pax.url.version>1.5.0</pax.url.version>
     <slf4j.version>1.7.2</slf4j.version>
     <pax.logging.version>1.7.0</pax.logging.version>
-    <karaf.version>2.3.0</karaf.version>
+    <karaf.version>4.0.4</karaf.version>
     <felix.eventadmin.version>1.3.2</felix.eventadmin.version>
     <felix.configadmin.version>1.6.0</felix.configadmin.version>
     <felix.scr.version>1.8.2</felix.scr.version>
