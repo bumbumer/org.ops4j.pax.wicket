@@ -33,7 +33,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
-                    <forkMode>pertest</forkMode>
                     <systemProperties>
                         <property>
                             <name>org.osgi.service.http.port</name>
@@ -76,117 +75,115 @@
     </build>
 
     <dependencies>
-            <dependency>
-                <groupId>org.ops4j.pax.wicket.samples</groupId>
-                <artifactId>org.ops4j.pax.wicket.samples.navigation</artifactId>
-                <version>${project.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.ops4j.pax.wicket.samples.plain</groupId>
-                <artifactId>org.ops4j.pax.wicket.samples.plain.simple</artifactId>
-                <version>${project.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.ops4j.pax.wicket.samples.plain</groupId>
-                <artifactId>org.ops4j.pax.wicket.samples.plain.pagefactory</artifactId>
-                <version>${project.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.ops4j.pax.wicket.samples.plain</groupId>
-                <artifactId>org.ops4j.pax.wicket.samples.plain.inject</artifactId>
-                <version>${project.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.ops4j.pax.wicket.samples.blueprint</groupId>
-                <artifactId>org.ops4j.pax.wicket.samples.blueprint.simple</artifactId>
-                <version>${project.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.ops4j.pax.wicket.samples.blueprint</groupId>
-                <artifactId>org.ops4j.pax.wicket.samples.blueprint.filter</artifactId>
-                <version>${project.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.ops4j.pax.wicket.samples.blueprint</groupId>
-                <artifactId>org.ops4j.pax.wicket.samples.blueprint.applicationfactory</artifactId>
-                <version>${project.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.ops4j.pax.wicket.samples.blueprint</groupId>
-                <artifactId>org.ops4j.pax.wicket.samples.blueprint.mount</artifactId>
-                <version>${project.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.ops4j.pax.wicket.samples.blueprint.injection</groupId>
-                <artifactId>org.ops4j.pax.wicket.samples.blueprint.injection.simple</artifactId>
-                <version>${project.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.ops4j.pax.wicket.samples.springdm</groupId>
-                <artifactId>org.ops4j.pax.wicket.samples.springdm.simple</artifactId>
-                <version>${project.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.ops4j.pax.wicket.samples.springdm.injection</groupId>
-                <artifactId>org.ops4j.pax.wicket.samples.springdm.injection.simple</artifactId>
-                <version>${project.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.ops4j.pax.wicket.samples.mixed</groupId>
-                <artifactId>org.ops4j.pax.wicket.samples.mixed.api</artifactId>
-                <version>${project.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.ops4j.pax.wicket.samples.mixed</groupId>
-                <artifactId>org.ops4j.pax.wicket.samples.mixed.main</artifactId>
-                <version>${project.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.ops4j.pax.wicket.samples.mixed</groupId>
-                <artifactId>org.ops4j.pax.wicket.samples.mixed.page</artifactId>
-                <version>${project.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.ops4j.pax.wicket.samples.mixed</groupId>
-                <artifactId>org.ops4j.pax.wicket.samples.mixed.component</artifactId>
-                <version>${project.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.ops4j.pax.wicket.samples.edge.inheritinjection</groupId>
-                <artifactId>org.ops4j.pax.wicket.samples.edge.inheritinjection.parent</artifactId>
-                <version>${project.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.ops4j.pax.wicket.samples.edge.inheritinjection</groupId>
-                <artifactId>org.ops4j.pax.wicket.samples.edge.inheritinjection.inherit</artifactId>
-                <version>${project.version}</version>
-                <scope>test</scope>
-            </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.wicket.samples</groupId>
+            <artifactId>org.ops4j.pax.wicket.samples.navigation</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.wicket.samples.plain</groupId>
+            <artifactId>org.ops4j.pax.wicket.samples.plain.simple</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.wicket.samples.plain</groupId>
+            <artifactId>org.ops4j.pax.wicket.samples.plain.pagefactory</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.wicket.samples.plain</groupId>
+            <artifactId>org.ops4j.pax.wicket.samples.plain.inject</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.wicket.samples.blueprint</groupId>
+            <artifactId>org.ops4j.pax.wicket.samples.blueprint.simple</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.wicket.samples.blueprint</groupId>
+            <artifactId>org.ops4j.pax.wicket.samples.blueprint.filter</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.wicket.samples.blueprint</groupId>
+            <artifactId>org.ops4j.pax.wicket.samples.blueprint.applicationfactory</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.wicket.samples.blueprint</groupId>
+            <artifactId>org.ops4j.pax.wicket.samples.blueprint.mount</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.wicket.samples.blueprint.injection</groupId>
+            <artifactId>org.ops4j.pax.wicket.samples.blueprint.injection.simple</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.wicket.samples.springdm</groupId>
+            <artifactId>org.ops4j.pax.wicket.samples.springdm.simple</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.wicket.samples.springdm.injection</groupId>
+            <artifactId>org.ops4j.pax.wicket.samples.springdm.injection.simple</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.wicket.samples.mixed</groupId>
+            <artifactId>org.ops4j.pax.wicket.samples.mixed.api</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.wicket.samples.mixed</groupId>
+            <artifactId>org.ops4j.pax.wicket.samples.mixed.main</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.wicket.samples.mixed</groupId>
+            <artifactId>org.ops4j.pax.wicket.samples.mixed.page</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.wicket.samples.mixed</groupId>
+            <artifactId>org.ops4j.pax.wicket.samples.mixed.component</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.wicket.samples.edge.inheritinjection</groupId>
+            <artifactId>org.ops4j.pax.wicket.samples.edge.inheritinjection.parent</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.wicket.samples.edge.inheritinjection</groupId>
+            <artifactId>org.ops4j.pax.wicket.samples.edge.inheritinjection.inherit</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
     
-            <dependency>
-                <groupId>org.ops4j.pax.wicket.samples.ds</groupId>
-                <artifactId>org.ops4j.pax.wicket.samples.ds.webapplication</artifactId>
-                <version>${project.version}</version>
-                <scope>test</scope>
-            </dependency>
-
-
+        <dependency>
+            <groupId>org.ops4j.pax.wicket.samples.ds</groupId>
+            <artifactId>org.ops4j.pax.wicket.samples.ds.webapplication</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
 
         <dependency>
             <groupId>org.ops4j.pax.wicket</groupId>
@@ -197,25 +194,25 @@
         <dependency>
             <groupId>org.ops4j.pax.exam</groupId>
             <artifactId>pax-exam-container-karaf</artifactId>
-            <version>4.4.0</version>
+            <version>4.8.0</version>
             <scope>test</scope>
         </dependency>
     
         <dependency>
             <groupId>org.ops4j.pax.exam</groupId>
             <artifactId>pax-exam</artifactId>
+            <version>4.8.0</version>
         </dependency>
         <dependency>
             <groupId>org.ops4j.pax.exam</groupId>
             <artifactId>pax-exam-junit4</artifactId>
+            <version>4.8.0</version>
         </dependency>
         <dependency>
             <groupId>org.ops4j.pax.exam</groupId>
             <artifactId>pax-exam-inject</artifactId>
+            <version>4.8.0</version>
         </dependency>
-        
-        
-        
         		
         <dependency>
             <groupId>org.apache.karaf.features</groupId>
@@ -250,17 +247,11 @@
             <artifactId>javax.inject</artifactId>
             <version>1</version>
         </dependency>
-        <dependency>
-            <groupId>org.ops4j.pax.exam</groupId>
-            <artifactId>pax-exam-junit4</artifactId>
-            <version>4.7.0-SNAPSHOT</version>
-            <scope>test</scope>
-        </dependency>                
 
         <dependency>
             <groupId>org.ops4j.pax.exam</groupId>
             <artifactId>pax-exam-link-mvn</artifactId>
-            <version>4.7.0-SNAPSHOT</version>
+            <version>4.7.0</version>
             <scope>test</scope>
         </dependency>
 

@@ -214,7 +214,7 @@
     <module>features/wicket</module>
     <module>features/paxwicket</module>
     <module>itests</module>
-    <module>karaf</module>
+    <module>org.ops4j.pax.wicket.itests.karaf</module>
   </modules>
 
   <dependencyManagement>

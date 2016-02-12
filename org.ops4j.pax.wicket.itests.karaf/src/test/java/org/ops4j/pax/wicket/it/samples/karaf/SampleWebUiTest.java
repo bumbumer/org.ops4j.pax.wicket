@@ -1,4 +1,3 @@
-
 /**
  * Copyright OPS4J
  *
@@ -14,28 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
-import static org.ops4j.pax.exam.CoreOptions.provision;
+package org.ops4j.pax.wicket.it.samples.karaf;
 
-import javax.inject.Inject;
 
-import org.apache.wicket.protocol.http.WebApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.Configuration;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.junit.PaxExam;
-import org.ops4j.pax.exam.util.Filter;
-import org.ops4j.pax.wicket.api.WebApplicationFactory;
-//import org.ops4j.pax.wicket.samples.plain.simple.service.EchoService;
-import org.osgi.framework.BundleContext;
 
-import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import java.io.File;
 import static org.ops4j.pax.exam.CoreOptions.maven;
+import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
+import static org.ops4j.pax.exam.CoreOptions.provision;
+import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.configureConsole;
 import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.features;
+import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.karafDistributionConfiguration;
+import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.keepRuntimeFolder;
+import org.ops4j.pax.exam.options.MavenArtifactUrlReference;
 import org.ops4j.pax.exam.options.MavenUrlReference;
 
 @RunWith(PaxExam.class)
@@ -49,6 +44,7 @@ public class SampleWebUiTest {
      */
     private static final int TIMEOUT = 120 * 1000;
 
+    /*
     @Inject
     private BundleContext bundleContext;
 
@@ -63,28 +59,72 @@ public class SampleWebUiTest {
     /**
      * see module: /samples/ds/webapplication
      */
+ /*
     @Inject
     @Filter(value = "(pax.wicket.applicationname=sample.ds.factory)", timeout = TIMEOUT)
     private WebApplicationFactory<WebApplication> factorySampleDS;
-
+     */
     @Configuration
     public final Option[] configureAdditionalProvision() {
 
-        MavenUrlReference paxFeatureRepo = maven()
+
+        MavenUrlReference wicketFeatureRepo = maven()
+                .groupId("org.ops4j.pax.wicket").artifactId("paxwicket")
+                .version("3.0.3-SNAPSHOT").classifier("features").type("xml");
+
+                MavenUrlReference paxwicketFeatureRepo = maven()
                 .groupId("org.ops4j.pax.wicket").artifactId("features")
                 .version("3.0.3-SNAPSHOT").classifier("features").type("xml");
 
+        
+        
+        MavenUrlReference karafStandardRepo = maven()
+                .groupId("org.apache.karaf.features").artifactId("standard").versionAsInProject().classifier("features").type("xml");
+
+        MavenArtifactUrlReference karafUrl = maven()
+                .groupId("org.apache.karaf").artifactId("apache-karaf")
+                .version("4.0.4").type("zip");
+
         return new Option[]{
-            provision(mavenBundle().groupId("org.ops4j.pax.wicket.samples")
-            .artifactId("org.ops4j.pax.wicket.samples.navigation").versionAsInProject()),
+            karafDistributionConfiguration()
+                .frameworkUrl(karafUrl)
+                .unpackDirectory(new File("target", "exam"))
+                .useDeployFolder(false),
+            keepRuntimeFolder(),
+            configureConsole().ignoreLocalConsole(),
+            
+            //karafDistributionConfiguration().frameworkUrl(karafUrl),
+            
+            
+
+            
+            features(karafStandardRepo, "scr"),
+            features(karafStandardRepo, "webconsole")
+
+                ,
+            
+            
+            features(wicketFeatureRepo, "wicket"),
+            features(paxwicketFeatureRepo, "pax-wicket"),
+            features(paxwicketFeatureRepo, "pax-wicket-spring"),
+            features(paxwicketFeatureRepo, "pax-wicket-blueprint"),
+            
+/*
+            provision(mavenBundle().groupId("org.apache.servicemix.bundles")
+            .artifactId("org.apache.servicemix.bundles.cglib").version("2.2.2_1")),
+*/
             provision(mavenBundle().groupId("org.ops4j.pax.wicket.samples.plain")
             .artifactId("org.ops4j.pax.wicket.samples.plain.simple").versionAsInProject()),
+/*
+            provision(mavenBundle().groupId("org.ops4j.pax.wicket.samples")
+            .artifactId("org.ops4j.pax.wicket.samples.navigation").versionAsInProject()),
             provision(mavenBundle().groupId("org.ops4j.pax.wicket.samples.plain")
             .artifactId("org.ops4j.pax.wicket.samples.plain.pagefactory").versionAsInProject()),
             provision(mavenBundle().groupId("org.ops4j.pax.wicket.samples.plain")
             .artifactId("org.ops4j.pax.wicket.samples.plain.inject").versionAsInProject()),
             provision(mavenBundle().groupId("org.ops4j.pax.wicket.samples.blueprint")
             .artifactId("org.ops4j.pax.wicket.samples.blueprint.simple").versionAsInProject()),
+/*
             provision(mavenBundle().groupId("org.ops4j.pax.wicket.samples.blueprint")
             .artifactId("org.ops4j.pax.wicket.samples.blueprint.mount").versionAsInProject()),
             provision(mavenBundle().groupId("org.ops4j.pax.wicket.samples.blueprint")
@@ -110,22 +150,26 @@ public class SampleWebUiTest {
             provision(mavenBundle().groupId("org.ops4j.pax.wicket.samples.edge.inheritinjection")
             .artifactId("org.ops4j.pax.wicket.samples.edge.inheritinjection.inherit").versionAsInProject()),
             provision(mavenBundle().groupId("org.ops4j.pax.wicket.samples.ds")
+  
             .artifactId("org.ops4j.pax.wicket.samples.ds.webapplication").versionAsInProject()),
+*/             
             provision(mavenBundle().groupId("org.openengsb.wrapped").artifactId("net.sourceforge.htmlunit-all")
-            .versionAsInProject()), features(paxFeatureRepo, "pax-wicket"), features(paxFeatureRepo, "pax-wicket-spring"), features(paxFeatureRepo, "pax-wicket-blueprint")};
+            .versionAsInProject())
+                };
 
     }
 
     @Test
     public void testIfAllExamplesWhereLoaded_shouldBeAbleToAccessThemAll() throws Exception {
-        assertNotNull(factoryEdgeInheritInjection);
-        assertNotNull(factorySpringDmSimpleDefault);
-        assertNotNull(factorySampleDS);
+//        assertNotNull(factoryEdgeInheritInjection);
+        //      assertNotNull(factorySpringDmSimpleDefault);
+//        assertNotNull(factorySampleDS);
         //Register a service here for later injection
         //bundleContext.registerService(EchoService.class, new EchoServiceImplementation(), null);
 
         // testNavigationApplication_shouldRender
         System.in.read();
+        /*
         WebClient webclient = new WebClient();
         String WEBUI_PORT = "8080";
         HtmlPage page = webclient.getPage("http://localhost:" + WEBUI_PORT + "/navigation/");
@@ -210,6 +254,7 @@ public class SampleWebUiTest {
         page = webclient.getPage("http://localhost:" + WEBUI_PORT + "/example/ds");
         assertTrue(page.asText().contains("Declarative Services"));
         webclient.closeAllWindows();
+         */
     }
 
     /**
