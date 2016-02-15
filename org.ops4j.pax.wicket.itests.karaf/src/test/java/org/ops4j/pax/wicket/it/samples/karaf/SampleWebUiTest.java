@@ -23,6 +23,7 @@ import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.junit.PaxExam;
 
 import java.io.File;
+import javax.inject.Inject;
 import static org.ops4j.pax.exam.CoreOptions.maven;
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
 import static org.ops4j.pax.exam.CoreOptions.provision;
@@ -32,6 +33,8 @@ import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.karafDist
 import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.keepRuntimeFolder;
 import org.ops4j.pax.exam.options.MavenArtifactUrlReference;
 import org.ops4j.pax.exam.options.MavenUrlReference;
+import org.ops4j.pax.wicket.samples.plain.simple.service.EchoService;
+import org.osgi.framework.BundleContext;
 
 @RunWith(PaxExam.class)
 public class SampleWebUiTest {
@@ -43,10 +46,10 @@ public class SampleWebUiTest {
      * timeouts are rather high for the benefit of our CI server.
      */
     private static final int TIMEOUT = 120 * 1000;
-
-    /*
     @Inject
     private BundleContext bundleContext;
+
+    /*
 
     @Inject
     @Filter(value = "(pax.wicket.applicationname=edge.inheritinjection)", timeout = TIMEOUT)
@@ -115,7 +118,7 @@ public class SampleWebUiTest {
 */
             provision(mavenBundle().groupId("org.ops4j.pax.wicket.samples.plain")
             .artifactId("org.ops4j.pax.wicket.samples.plain.simple").versionAsInProject()),
-/*
+
             provision(mavenBundle().groupId("org.ops4j.pax.wicket.samples")
             .artifactId("org.ops4j.pax.wicket.samples.navigation").versionAsInProject()),
             provision(mavenBundle().groupId("org.ops4j.pax.wicket.samples.plain")
@@ -124,13 +127,15 @@ public class SampleWebUiTest {
             .artifactId("org.ops4j.pax.wicket.samples.plain.inject").versionAsInProject()),
             provision(mavenBundle().groupId("org.ops4j.pax.wicket.samples.blueprint")
             .artifactId("org.ops4j.pax.wicket.samples.blueprint.simple").versionAsInProject()),
-/*
+
             provision(mavenBundle().groupId("org.ops4j.pax.wicket.samples.blueprint")
             .artifactId("org.ops4j.pax.wicket.samples.blueprint.mount").versionAsInProject()),
             provision(mavenBundle().groupId("org.ops4j.pax.wicket.samples.blueprint")
             .artifactId("org.ops4j.pax.wicket.samples.blueprint.filter").versionAsInProject()),
+/*
             provision(mavenBundle().groupId("org.ops4j.pax.wicket.samples.blueprint")
             .artifactId("org.ops4j.pax.wicket.samples.blueprint.applicationfactory").versionAsInProject()),
+*/            
             provision(mavenBundle().groupId("org.ops4j.pax.wicket.samples.blueprint.injection")
             .artifactId("org.ops4j.pax.wicket.samples.blueprint.injection.simple").versionAsInProject()),
             provision(mavenBundle().groupId("org.ops4j.pax.wicket.samples.springdm")
@@ -152,7 +157,7 @@ public class SampleWebUiTest {
             provision(mavenBundle().groupId("org.ops4j.pax.wicket.samples.ds")
   
             .artifactId("org.ops4j.pax.wicket.samples.ds.webapplication").versionAsInProject()),
-*/             
+             
             provision(mavenBundle().groupId("org.openengsb.wrapped").artifactId("net.sourceforge.htmlunit-all")
             .versionAsInProject())
                 };
@@ -161,6 +166,7 @@ public class SampleWebUiTest {
 
     @Test
     public void testIfAllExamplesWhereLoaded_shouldBeAbleToAccessThemAll() throws Exception {
+        bundleContext.registerService(EchoService.class, new EchoServiceImplementation(), null);
 //        assertNotNull(factoryEdgeInheritInjection);
         //      assertNotNull(factorySpringDmSimpleDefault);
 //        assertNotNull(factorySampleDS);
@@ -260,12 +266,12 @@ public class SampleWebUiTest {
     /**
      * Simple Echo Implementation for itest...
      */
-//    private final class EchoServiceImplementation implements EchoService {
-//
-//        private static final long serialVersionUID = 6447679249771482700L;
-//
-//        public String someEchoMethod(String toEcho) {
-//            return "Echo: " + toEcho;
-//        }
-//    }
+    private final class EchoServiceImplementation implements EchoService {
+
+        private static final long serialVersionUID = 6447679249771482700L;
+
+        public String someEchoMethod(String toEcho) {
+            return "Echo: " + toEcho;
+        }
+    }
 }
