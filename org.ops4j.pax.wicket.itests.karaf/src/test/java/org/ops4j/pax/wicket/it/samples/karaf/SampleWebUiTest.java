@@ -100,7 +100,6 @@ public class SampleWebUiTest {
             
             
 
-            
             features(karafStandardRepo, "scr"),
             features(karafStandardRepo, "webconsole")
 
@@ -112,10 +111,6 @@ public class SampleWebUiTest {
             features(paxwicketFeatureRepo, "pax-wicket-spring"),
             features(paxwicketFeatureRepo, "pax-wicket-blueprint"),
             
-/*
-            provision(mavenBundle().groupId("org.apache.servicemix.bundles")
-            .artifactId("org.apache.servicemix.bundles.cglib").version("2.2.2_1")),
-*/
             provision(mavenBundle().groupId("org.ops4j.pax.wicket.samples.plain")
             .artifactId("org.ops4j.pax.wicket.samples.plain.simple").versionAsInProject()),
 

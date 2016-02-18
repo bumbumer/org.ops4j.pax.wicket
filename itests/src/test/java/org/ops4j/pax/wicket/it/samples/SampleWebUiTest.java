@@ -146,12 +146,13 @@ public class SampleWebUiTest extends PaxWicketIntegrationTest {
 
     @Test
     public void testIfAllExamplesWhereLoaded_shouldBeAbleToAccessThemAll() throws Exception {
+        
         assertNotNull(factoryEdgeInheritInjection);
         assertNotNull(factorySpringDmSimpleDefault);
         assertNotNull(factorySampleDS);
         //Register a service here for later injection
         bundleContext.registerService(EchoService.class, new EchoServiceImplementation(), null);
-
+        System.in.read();
         // testNavigationApplication_shouldRender
         WebClient webclient = new WebClient();
         HtmlPage page = webclient.getPage("http://localhost:" + WEBUI_PORT + "/navigation/");
